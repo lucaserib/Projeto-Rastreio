@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin 2020</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <h1>Adicionar Dados</h1>
+    <div class="input-group mb-3" style="margin-top: 30px;">
+      <form action="/admin2020" method="POST" class="form-inline">
+        <div class="form-group mb-2">
+          <label for="codigoRastreio" class="sr-only"
+            >Código de Rastreio:</label
+          >
+          <input
+            class="form-control"
+            type="text"
+            id="codigoRastreio"
+            name="codigoRastreio"
+            placeholder="Código de Rastreio"
+          />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="dataRecolha" class="sr-only">Data de Recolha:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dataRecolha"
+            name="dataRecolha"
+          />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="dataPrevisao" class="sr-only">Data de Previsão:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dataPrevisao"
+            name="dataPrevisao"
+          />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="entregue" class="sr-only">Entregue:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="entregue"
+            name="entregue"
+          />
+        </div>
+        <button type="submit" class="btn btn-outline-secondary mb-2">
+          Submit
+        </button>
+      </form>
+    </div>
+    <h2>Rastreios</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Código de Rastreio</th>
+            <th scope="col">Data de Recolha</th>
+            <th scope="col">Data de Previsão</th>
+            <th scope="col">Entregue</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+      <tbody>
+    </form>
+    <% rastreios.forEach(rastreio => { %>
+        <tr>
+          <td><%= rastreio.codigoRastreio %></td>
+          <td><%= new Date(rastreio.dataRecolha).toLocaleDateString('pt-BR') %></td>
+          <td><%= new Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %></td>
+          <td><%= new Date(rastreio.entregue).toLocaleDateString('pt-BR') %></td>
+          <td>
+            <form action="/admin2020/delete/<%= rastreio._id %>" method="POST">
+                <button type="submit" class="btn btn-danger">Deletar</button>
+              </form>
+          </td>
+        </tr>
+        <% }) %>
+
+      </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
