@@ -13,6 +13,9 @@ mongoose.connect(process.env.CONEXAO_DB, {
     useUnifiedTopology: true,
   });
 
+
+
+
 // 5. Defina o modelo de dados para o rastreamento.
 const RastreioSchema = new mongoose.Schema({
   codigoRastreio: String,
@@ -22,6 +25,11 @@ const RastreioSchema = new mongoose.Schema({
 });
 
 const Rastreio = mongoose.model("Rastreio", RastreioSchema);
+
+
+app.get('/', function(req, res) {
+    res.render('home');
+});
 
 // 6. Crie rotas para /home, /admin2020 e /Rastreio.
 app.get("/home", (req, res) => {
@@ -81,5 +89,5 @@ app.post("/rastreio", async (req, res) => {
       res.status(500).send('Ocorreu um erro ao buscar o rastreio');
     }
   });
-  
+
 app.listen(3000, () => console.log("Server running on port 3000"));
