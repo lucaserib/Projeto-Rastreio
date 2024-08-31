@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Rastreio PsMoveis</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-        <style>
-                h1, p {
-                        font-weight: bold;
-                        color: #333;
-                        text-align: center;
-                }
-                .container {
-                        max-width: 500px;
-                        margin: auto;
-                }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1 class="mt-5">Rastreio</h1>
-            <p class="mt-4">Código de Rastreio: <%= rastreio.codigoRastreio %></p>
-            <p>
-                Data de Recolha: <%= new
-                Date(rastreio.dataRecolha).toLocaleDateString('pt-BR') %>
-            </p>
-            <p>
-                Data de Previsão: <%= new
-                Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %>
-            </p>
-            <p>Entregue: <%= rastreio.entregue %></p>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rastreio PsMoveis</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      h1,
+      p {
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Rastreio</h1>
+      <p class="mt-4">Código de Rastreio: <%= rastreio.codigoRastreio %></p>
+      <p>
+        Data de Recolha: <%= new
+        Date(rastreio.dataRecolha).toLocaleDateString('pt-BR') %>
+      </p>
+      <p>
+        Data de Previsão: <%= new
+        Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %>
+      </p>
+      <p>
+        Entregue: <%= new Date(rastreio.entregue).toLocaleDateString('pt-BR') %>
+      </p>
+    </div>
+  </body>
 </html>
