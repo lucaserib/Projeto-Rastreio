@@ -40,13 +40,21 @@
         Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %>
       </p>
       <p>
-        <%= rastreio.entregue ? 'Entregue: ' + new Date(rastreio.entregue).toLocaleDateString('pt-BR') : 'Em Transporte' %>
+        <%= rastreio.entregue ? 'Entregue: ' + new
+        Date(rastreio.entregue).toLocaleDateString('pt-BR') : 'Em Transporte' %>
       </p>
+      <% if (rastreio.inicioPrestacao) { %>
       <p class="mt-4">Início da Prestação: <%= rastreio.inicioPrestacao %></p>
+      <% } %> <% if (rastreio.terminoPrestacao) { %>
       <p class="mt-4">Término da Prestação: <%= rastreio.terminoPrestacao %></p>
+      <% } %>
       <a href="/" style="border-radius: 20px" class="btn btn-primary"
         >Fazer Nova Busca</a
       >
     </div>
+    
   </body>
+    <% if (error && error.length > 0) { %>
+      <script>alert('<%= error %>');</script>
+    <% } %>
 </html>

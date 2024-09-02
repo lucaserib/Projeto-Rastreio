@@ -3,8 +3,21 @@ const { escapeXML } = require("ejs");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const session = require('express-session');
+const flash = require('connect-flash');
 
+app.use(session({
+  secret: 'your secret',
+  resave: false,
+  saveUninitialized: true,
+}));
 
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  next();
+});
 
 app.use(express.static("public"));
 
@@ -38,11 +51,13 @@ app.get('/', function(req, res) {
 });
 
 app.get("/home", (req, res) => {
-  res.render("home");
+  const error = req.session.error;
+  req.session.error = null; // limpar a mensagem de erro
+  res.render("home", { error });
 });
 
 app.get("/rastreio", (req, res) => {
-  res.render("rastreio");
+  res.render("rastreio", { error: req.flash('error'), rastreio: null });
 });
 
 app.post('/admin2020/delete/:id', (req, res) => {
@@ -74,28 +89,17 @@ app.get('/admin2020', (req, res) => {
       .catch(err => console.log(err));
   });
 
-app.post("/rastreio", async (req, res) => {
-  const rastreio = await Rastreio.findOne({
-    codigoRastreio: req.body.codigoRastreio,
-  });
-  res.render("rastreio", { rastreio });
-});
-
-app.post("/rastreio", async (req, res) => {
-    try {
-      const rastreio = await Rastreio.findOne({
-        codigoRastreio: req.body.codigoRastreio,
-      });
+  app.post("/rastreio", async (req, res) => {
+    const rastreio = await Rastreio.findOne({
+      codigoRastreio: req.body.codigoRastreio,
+    });
   
-      if (rastreio) {
-        res.render("rastreio", { rastreio });
-      } else {
-        res.send('Nenhum rastreio encontrado com esse código');
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Ocorreu um erro ao buscar o rastreio');
+    if (!rastreio) {
+      req.session.error = 'Código de rastreio inválido';
+      return res.redirect('/home');
     }
+  
+    res.render('rastreio', { rastreio });
   });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
