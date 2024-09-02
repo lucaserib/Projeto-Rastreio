@@ -40,8 +40,7 @@
         Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %>
       </p>
       <p>
-        <%= rastreio.entregue ? new
-        Date(rastreio.entregue).toLocaleDateString('pt-BR') : 'Em Transporte' %>
+        <%= rastreio.entregue ? 'Entregue: ' + new Date(rastreio.entregue).toLocaleDateString('pt-BR') : 'Em Transporte' %>
       </p>
       <p class="mt-4">Início da Prestação: <%= rastreio.inicioPrestacao %></p>
       <p class="mt-4">Término da Prestação: <%= rastreio.terminoPrestacao %></p>
