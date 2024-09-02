@@ -4,23 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rastreio PsMoveis</title>
-    <link rel="icon" href="/favicon.png" type="image/x-icon">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/favicon.png" type="image/x-icon" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        h1, p {
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            max-width: 500px;
-            margin: auto;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            margin-top: 20px;
-        }
+      h1,
+      p {
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
@@ -36,9 +40,14 @@
         Date(rastreio.dataPrevisao).toLocaleDateString('pt-BR') %>
       </p>
       <p>
-        Entregue: <%= new Date(rastreio.entregue).toLocaleDateString('pt-BR') %>
+        <%= rastreio.entregue ? new
+        Date(rastreio.entregue).toLocaleDateString('pt-BR') : 'Em Transporte' %>
       </p>
-      <a href="/"  class="btn btn-primary">Fazer Nova Busca</a>
+      <p class="mt-4">Início da Prestação: <%= rastreio.inicioPrestacao %></p>
+      <p class="mt-4">Término da Prestação: <%= rastreio.terminoPrestacao %></p>
+      <a href="/" style="border-radius: 20px" class="btn btn-primary"
+        >Fazer Nova Busca</a
+      >
     </div>
   </body>
 </html>

@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { escapeXML } = require("ejs");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -10,7 +11,8 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
-// 4. Conecte-se ao banco de dados MongoDB usando o Mongoose.
+
+
 mongoose.connect(process.env.CONEXAO_DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,9 +21,10 @@ mongoose.connect(process.env.CONEXAO_DB, {
 
 
 
-// 5. Defina o modelo de dados para o rastreamento.
 const RastreioSchema = new mongoose.Schema({
   codigoRastreio: String,
+  inicioPrestacao: String,
+  terminoPrestacao: String,
   dataRecolha: Date,
   dataPrevisao: Date,
   entregue: Date,
@@ -34,7 +37,6 @@ app.get('/', function(req, res) {
     res.render('home');
 });
 
-// 6. Crie rotas para /home, /admin2020 e /Rastreio.
 app.get("/home", (req, res) => {
   res.render("home");
 });
@@ -56,8 +58,11 @@ app.get('/admin2020', (req, res) => {
       .catch(err => console.log(err));
   });
 
+
   app.post('/admin2020', (req, res) => {
     const rastreio = new Rastreio({
+      inicioPrestacao: req.body.inicioPrestacao,
+      terminoPrestacao: req.body.terminoPrestacao,
       codigoRastreio: req.body.codigoRastreio,
       dataRecolha: req.body.dataRecolha,
       dataPrevisao: req.body.dataPrevisao,
