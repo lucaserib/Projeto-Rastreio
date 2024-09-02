@@ -4,26 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rastreio PsMoveis</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      h1,
-      p {
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-      }
-      .container {
-        max-width: 500px;
-        margin: auto;
-      }
+        h1, p {
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1 class="mt-5">Rastreio</h1>
+      <h1 class="mt-5">Informações de Rastreio:</h1>
       <p class="mt-4">Código de Rastreio: <%= rastreio.codigoRastreio %></p>
       <p>
         Data de Recolha: <%= new
@@ -36,6 +38,7 @@
       <p>
         Entregue: <%= new Date(rastreio.entregue).toLocaleDateString('pt-BR') %>
       </p>
+      <a href="/"  class="btn btn-primary">Fazer Nova Busca</a>
     </div>
   </body>
 </html>
