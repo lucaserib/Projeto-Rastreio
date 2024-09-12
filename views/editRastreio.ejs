@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editar Rastreio</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <h1>Editar Data de Entrega - <%= rastreio.codigoRastreio %></h1>
+    <form action="/admin2020/update/<%= rastreio._id %>" method="POST">
+      <div class="form-group">
+        <label for="entregue">Entregue (Data):</label>
+        <input
+          type="date"
+          class="form-control"
+          id="entregue"
+          name="entregue"
+          value="<%= rastreio.entregue ? rastreio.entregue.toISOString().substring(0, 10) : '' %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+    <a href="/admin2020" class="btn btn-secondary">Voltar</a>
+  </body>
+</html>

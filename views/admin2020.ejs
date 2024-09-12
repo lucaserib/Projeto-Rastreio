@@ -102,10 +102,12 @@
           <td><%= rastreio.inicioPrestacao %></td>
           <td><%= rastreio.terminoPrestacao%></td>
           <td>
-            <form action="/admin2020/delete/<%= rastreio._id %>" method="POST">
-                <button type="submit" class="btn btn-danger">Deletar</button>
-              </form>
+            <form action="/admin2020/delete/<%= rastreio._id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-danger">Deletar</button>
+            </form>
+            <a href="/admin2020/edit/<%= rastreio._id %>" class="btn btn-warning">Editar</a>
           </td>
+          
         </tr>
         <% }) %>
 
